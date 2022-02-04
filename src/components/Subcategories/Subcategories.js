@@ -3,64 +3,78 @@ import "./Subcategories.css";
 import { BsChevronCompactLeft } from "react-icons/bs";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
+import { Link } from "react-router-dom";
 const apiKey = process.env.REACT_APP_API_KEY;
 
 export default function Subcategories(props) {
   const [userSelected, setUserSelected] = useState([]);
+  const [genrePosition, setGenrePosition] = useState(0);
+  const [catLeftArrowActive, setCatLeftArrowActive] = useState(false);
+  const [catRightArrowActive, setCatRightArrowActive] = useState(true);
 
   function choseGenre(id) {
     props.setGenreSelected(id);
   }
-  let position = 0;
+
   function moveCats(direction) {
-    console.log(position);
-    const catList = document.querySelector(".subcategories-list");
-    // console.log(catList);
-    // console.log(catList.style.left);
     if (direction === "right") {
-      position += 10;
-      catList.style.left = `-${position}rem`;
+      setGenrePosition(genrePosition + 10);
+      setCatLeftArrowActive(true);
+      if (genrePosition === 140) setCatRightArrowActive(false);
     } else {
-      position -= 10;
-      catList.style.left = `-${position}rem`;
+      setGenrePosition(genrePosition - 10);
+      if (genrePosition === 10) setCatLeftArrowActive(false);
+      if (genrePosition <= 150) setCatRightArrowActive(true);
     }
   }
   return (
     <div className="subcategories-container">
       <div className="subcategories">
-        <div>
-          <BsChevronCompactLeft
-            className="cat-left"
-            onClick={() => moveCats("left")}
-          />
+        <div className="cat-left-arrow-container">
+          {catLeftArrowActive ? (
+            <BsChevronCompactLeft
+              className="cat-left"
+              onClick={() => moveCats("left")}
+            />
+          ) : null}
         </div>
         <div className="subcat-list-container">
-          <div className="subcategories-list">
+          <div
+            className="subcategories-list"
+            style={{ left: `-${genrePosition}rem` }}
+          >
             {props.genres.map((genre) => {
               return (
-                <div
-                  className="subcat-btn"
-                  key={genre.id}
-                  onClick={() => choseGenre(genre.id)}
-                >
-                  {genre.name}
-                </div>
+                <Link to="/" className="subcat-btn">
+                  <div
+                    // className="subcat-btn"
+                    key={genre.id}
+                    onClick={() => choseGenre(genre.id)}
+                  >
+                    {genre.name}
+                  </div>
+                </Link>
               );
             })}
           </div>
         </div>
-        <div>
-          <BsChevronCompactRight
-            className="cat-right"
-            onClick={() => moveCats("right")}
-          />
+        <div className="cat-right-arrow-container">
+          {catRightArrowActive ? (
+            <BsChevronCompactRight
+              className="cat-right"
+              onClick={() => moveCats("right")}
+            />
+          ) : null}
         </div>
       </div>
-      <input
-        type="text"
-        placeholder="Search Movies"
-        className="search-bar"
-      ></input>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search Movies"
+          className="search-bar"
+        ></input>
+        <BiSearchAlt className="search-icon" />
+      </div>
     </div>
   );
 }

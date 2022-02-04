@@ -1,49 +1,74 @@
 .main-display-container {
   height: 53rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-display-left {
-  width: 66%;
-  width: 54rem;
+  position: relative;
+  /* width: 66%; */
+  width: 58rem;
   height: 100%;
-  padding-top: 2.2rem;
+  /* padding-top: 2.2rem; */
+  padding: 2rem;
   overflow: hidden;
 }
 
 .main-dispaly-left-subContainer {
+  position: absolute;
+  left: 0;
   height: 100%;
-  width: 190rem;
+  width: 225rem;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
   flex-wrap: wrap;
+  transition: all 0.4s ease-in-out;
+  margin-left: 2rem;
 }
 
-.main-display-left div {
+.main-display-left .movie-img-container {
   margin-right: 1rem;
+}
+
+.main-dispaly-left-subContainer a:nth-of-type(even) {
+  margin-right: 2rem;
 }
 
 .main-display-right {
   width: 33%;
   height: 100%;
   border-left: 1px solid whitesmoke;
-  overflow: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
+  scrollbar-color: goldenrod;
+  scrollbar-width: thin;
+}
+
+.main-display-arrow {
+  font-size: 4rem;
+  width: 4rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.main-display-arrow:hover {
+  color: whitesmoke;
 }
 
 .trending-title {
   color: whitesmoke;
   margin-bottom: 0.8rem;
+  font-size: 1.5rem;
 }
 
 .trending-display {
+  height: min-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 0.8rem;
-  scrollbar-color: #6969dd #e0e0e0;
-  scrollbar-width: thin;
 }
 
 .movie-img-container {
@@ -51,8 +76,14 @@
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 .movie-img-container img {
   width: 100%;
   cursor: pointer;
+}
+
+.movie-img-container:hover {
+  transform: scale(1.1);
+  z-index: 10;
 }

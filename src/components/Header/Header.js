@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import couchLogo from "../../assets/couchlogo.svg";
+import { BsFillGearFill } from "react-icons/bs";
+import { BsBellFill } from "react-icons/bs";
 import "./Header.css";
 
 export default function Header() {
@@ -20,8 +22,8 @@ export default function Header() {
         <div>TV Series</div>
       </div>
       <div className="header-icons">
-        <a>X</a>
-        <a>X</a>
+        <BsFillGearFill />
+        <BsBellFill />
         <div className="header-login">
           <p>login</p>
         </div>

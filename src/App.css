@@ -3,9 +3,9 @@
   --color-primary-light: rgb(90, 90, 90);
   --color-primary-dark: rgb(43, 43, 43);
 
-  --color-secondary: #edb1c4;
+  /* --color-secondary: #edb1c4;
   --color-secondary-light: #f8e5eb;
-  --color-secondary-dark: #db7093;
+  --color-secondary-dark: #db7093; */
 }
 
 * {
@@ -22,6 +22,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%; /* 1rem = 10px */
+  scrollbar-color: goldenrod white;
 }
 
 body {
@@ -34,12 +35,24 @@ body {
   /*height: 100%;*/
   font-family: sans-serif;
   background-color: var(--color-primary-light);
+  background-image: url("./assets/anglebackground.png");
+  background-position: center;
+  background-size: cover;
 }
 
 .App {
   width: 100rem;
   height: 70rem;
-  background-color: var(--color-primary);
   border-radius: 20px;
   padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(50, 50, 50, 0.8),
+    rgba(54, 54, 54, 0.8),
+    rgba(58, 58, 58, 0.8),
+    rgba(63, 63, 63, 0.8),
+    rgba(67, 67, 67, 0.8)
+  );
 }

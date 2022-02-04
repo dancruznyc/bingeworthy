@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import Subcategories from "./components/Subcategories/Subcategories";
 import MainDisplay from "./components/MainDisplay/MainDisplay";
+import PlayMovieCard from "./components/PlayMovieCard/PlayMovieCard";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 const apiKey = process.env.REACT_APP_API_KEY;
 
 function App() {
@@ -11,6 +14,7 @@ function App() {
   const [genreSelected, setGenreSelected] = useState("");
   const [moviesByGenre, setMoviesByGenre] = useState([]);
   const [movieId, setMovieId] = useState("");
+  const [movieSelected, setMovieSelected] = useState([]);
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`)
@@ -26,8 +30,8 @@ function App() {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.results);
-        setMoviesByGenre(res.results);
+        let arr = [...res.results, ...res.results.slice(0, 4)];
+        setMoviesByGenre(arr);
       });
   }, [genreSelected]);
 
@@ -37,17 +41,37 @@ function App() {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.results);
-        setMovieId(res.results);
+        console.log(res);
+        setMovieSelected(
+          res.results?.filter((movie) => movie.name.includes("Trailer"))[0] || {
+            key: "",
+          }
+        );
       });
   }, [movieId]);
 
   return (
-    <div className="App">
-      <Header />
-      <Subcategories genres={genres} setGenreSelected={setGenreSelected} />
-      <MainDisplay moviesByGenre={moviesByGenre} setMovieId={setMovieId} />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Subcategories genres={genres} setGenreSelected={setGenreSelected} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MainDisplay
+                moviesByGenre={moviesByGenre}
+                setMovieId={setMovieId}
+              />
+            }
+          />
+          <Route
+            path="/movie/:id"
+            element={<PlayMovieCard movieSelected={movieSelected} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

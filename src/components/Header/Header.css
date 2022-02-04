@@ -29,11 +29,17 @@
 }
 
 .logo-highlight {
-  color: turquoise;
+  color: goldenrod;
 }
 
 .header-categories {
   display: flex;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.header-categories div:hover {
+  color: white;
 }
 
 .header-categories div {
