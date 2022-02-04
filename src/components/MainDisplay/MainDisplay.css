@@ -41,8 +41,22 @@
   border-left: 1px solid whitesmoke;
   overflow: scroll;
   overflow-x: hidden;
-  scrollbar-color: goldenrod;
-  scrollbar-width: thin;
+  scrollbar-color: goldenrod white;
+  -webkit-scrollbar-color: goldenrod white;
+  scrollbar-width: normal;
+}
+
+.main-display-right::-webkit-scrollbar {
+  width: 10px;
+}
+
+.main-display-right::-webkit-scrollbar-thumb {
+  background-color: goldenrod;
+  border-radius: 20px;
+}
+
+.main-display-right::-webkit-scrollbar-track {
+  background-color: white;
 }
 
 .main-display-arrow {
@@ -72,6 +86,7 @@
 }
 
 .movie-img-container {
+  position: relative;
   width: 26rem;
   border-radius: 10px;
   overflow: hidden;
@@ -83,7 +98,49 @@
   cursor: pointer;
 }
 
+.movie-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  position: absolute;
+  bottom: -8rem;
+  width: 100%;
+  height: 50%;
+  color: black;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: rgba(211, 211, 211, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+
+.movie-caption-icons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.movie-caption-small-icons {
+  font-size: 2rem;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.play-icon {
+  font-size: 3rem;
+}
+
 .movie-img-container:hover {
   transform: scale(1.1);
   z-index: 10;
+}
+
+.movie-img-container:hover .movie-caption {
+  bottom: 0;
+  opacity: 1;
 }

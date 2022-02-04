@@ -18,12 +18,12 @@ export default function Header() {
         </p>
       </div>
       <div className="header-categories">
-        <div>Movies</div>
+        <div className="active">Movies</div>
         <div>TV Series</div>
       </div>
       <div className="header-icons">
-        <BsFillGearFill />
-        <BsBellFill />
+        <BsFillGearFill className="header-icon" />
+        <BsBellFill className="header-icon" />
         <div className="header-login">
           <p>login</p>
         </div>

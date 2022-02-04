@@ -23,6 +23,8 @@ html {
   box-sizing: border-box;
   font-size: 62.5%; /* 1rem = 10px */
   scrollbar-color: goldenrod white;
+  scrollbar-width: thin;
+  font-family: "Varela Round";
 }
 
 body {
@@ -38,6 +40,7 @@ body {
   background-image: url("./assets/anglebackground.png");
   background-position: center;
   background-size: cover;
+  font-family: "Varela Round";
 }
 
 .App {
@@ -55,4 +58,8 @@ body {
     rgba(63, 63, 63, 0.8),
     rgba(67, 67, 67, 0.8)
   );
+}
+
+.active {
+  color: goldenrod;
 }

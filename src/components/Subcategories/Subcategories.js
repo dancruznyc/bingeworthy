@@ -3,7 +3,7 @@ import "./Subcategories.css";
 import { BsChevronCompactLeft } from "react-icons/bs";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const apiKey = process.env.REACT_APP_API_KEY;
 
 export default function Subcategories(props) {
@@ -11,8 +11,16 @@ export default function Subcategories(props) {
   const [genrePosition, setGenrePosition] = useState(0);
   const [catLeftArrowActive, setCatLeftArrowActive] = useState(false);
   const [catRightArrowActive, setCatRightArrowActive] = useState(true);
+  let navigate = useNavigate();
+  if (!props.isActive) props.setIsActive("Action");
+  function searchMovie(e) {
+    navigate("/");
+    props.setSearchQuery(e.target.value);
+  }
 
-  function choseGenre(id) {
+  function choseGenre(id, name) {
+    props.setIsActive(name);
+    props.setSearchedMovies(null);
     props.setGenreSelected(id);
   }
 
@@ -47,9 +55,9 @@ export default function Subcategories(props) {
               return (
                 <Link to="/" className="subcat-btn">
                   <div
-                    // className="subcat-btn"
+                    className={props.isActive === genre.name ? "active" : ""}
                     key={genre.id}
-                    onClick={() => choseGenre(genre.id)}
+                    onClick={() => choseGenre(genre.id, genre.name)}
                   >
                     {genre.name}
                   </div>
@@ -69,6 +77,7 @@ export default function Subcategories(props) {
       </div>
       <div className="search-container">
         <input
+          onChange={(e) => searchMovie(e)}
           type="text"
           placeholder="Search Movies"
           className="search-bar"
