@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bingeworthy/static/css/main.e5007f09.css",
+    "main.js": "/bingeworthy/static/js/main.6a630942.js",
+    "static/media/anglebackground.png": "/bingeworthy/static/media/anglebackground.a8cbeca1fa2d37b5704f.png",
+    "static/media/couchlogo.svg": "/bingeworthy/static/media/couchlogo.edb53f948bcd06bdf03d5c89e0ea7ce5.svg",
+    "index.html": "/bingeworthy/index.html",
+    "main.e5007f09.css.map": "/bingeworthy/static/css/main.e5007f09.css.map",
+    "main.6a630942.js.map": "/bingeworthy/static/js/main.6a630942.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e5007f09.css",
+    "static/js/main.6a630942.js"
+  ]
+}
